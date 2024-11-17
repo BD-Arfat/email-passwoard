@@ -1,9 +1,21 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import auth from "../Firebase/firebase.init";
+import { toast } from "react-toastify";
+
 const Register = () => {
   const handleRegister = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((res) => {
+        console.log(res);
+        toast.success("Register successfully done");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
