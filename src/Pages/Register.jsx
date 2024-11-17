@@ -1,8 +1,11 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import auth from "../Firebase/firebase.init";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 const Register = () => {
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleRegister = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
@@ -13,8 +16,10 @@ const Register = () => {
         console.log(res);
         toast.success("Register successfully done");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
+        setErrorMessage(error.message);
+        toast.error(errorMessage);
       });
   };
 
