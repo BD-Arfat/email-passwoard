@@ -1,7 +1,23 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navItems = (
+    <>
+      <NavLink to={"/"} className="block py-2 px-4 hover:bg-blue-700">
+        Home
+      </NavLink>
+      <NavLink to={"/login"} className="block py-2 px-4 hover:bg-blue-700">
+        Login
+      </NavLink>
+      <NavLink to={"/register"} className="block py-2 px-4 hover:bg-blue-700">
+        Register
+      </NavLink>
+    </>
+  );
+
   return (
     <div>
       <nav className="bg-blue-600 w-full  text-white">
@@ -10,20 +26,7 @@ const Navbar = () => {
           <div className="text-2xl font-bold">MyBrand</div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6">
-            <a href="#home" className="hover:text-gray-300">
-              Home
-            </a>
-            <a href="#about" className="hover:text-gray-300">
-              About
-            </a>
-            <a href="#services" className="hover:text-gray-300">
-              Services
-            </a>
-            <a href="#contact" className="hover:text-gray-300">
-              Contact
-            </a>
-          </div>
+          <div className="hidden md:flex space-x-6">{navItems}</div>
 
           {/* Hamburger Icon */}
           <div className="md:hidden">
@@ -54,22 +57,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-blue-500">
-            <a href="#home" className="block py-2 px-4 hover:bg-blue-700">
-              Home
-            </a>
-            <a href="#about" className="block py-2 px-4 hover:bg-blue-700">
-              About
-            </a>
-            <a href="#services" className="block py-2 px-4 hover:bg-blue-700">
-              Services
-            </a>
-            <a href="#contact" className="block py-2 px-4 hover:bg-blue-700">
-              Contact
-            </a>
-          </div>
-        )}
+        {isMenuOpen && <div className="md:hidden bg-blue-500">{navItems}</div>}
       </nav>
     </div>
   );
