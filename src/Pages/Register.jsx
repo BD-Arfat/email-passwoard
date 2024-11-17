@@ -11,6 +11,12 @@ const Register = () => {
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
+
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters");
+      return;
+    }
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((res) => {
         console.log(res);
